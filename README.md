@@ -10,7 +10,7 @@ Included is a minimal test case.  A _Promise_ object wraps an _InnerClass_ objec
 
 When marshaling on Rubinius, the _Promise_ object is called with `#__class__`.  By default, this method is delegated to _InnerClass_ like all others.  As a result, the marshal string looks like `InnerClass > InnerClass`, which fails when unmarshaling.
 
-In contrast, in Rubies, the _Promise_ object knows its class name, so the marshal string looks like `Promise > InnerClass` and correctly unmarshals.
+In contrast, in Rubies, the _Promise_ object knows its class name, the `#__class__` method is never called, so it does not get delegated to the inner class.  The marshal string looks like `Promise > InnerClass` and correctly unmarshals.
 
 ````
 % rbenv local 2.2.3
